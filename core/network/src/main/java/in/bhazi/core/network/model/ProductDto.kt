@@ -1,4 +1,4 @@
-package `in`.bhazi.android.core.network.model
+package `in`.bhazi.core.network.model
 
 data class ProductDto(
     var id: Int,

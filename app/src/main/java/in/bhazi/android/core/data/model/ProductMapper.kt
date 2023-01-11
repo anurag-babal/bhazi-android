@@ -3,7 +3,7 @@ package `in`.bhazi.android.core.data.model
 import `in`.bhazi.android.core.database.model.ProductEntity
 import `in`.bhazi.android.core.model.Cart
 import `in`.bhazi.android.core.model.Product
-import `in`.bhazi.android.core.network.model.ProductDto
+import `in`.bhazi.core.network.model.ProductDto
 
 fun ProductEntity.toProduct(): Product {
     return Product(

@@ -1,6 +1,6 @@
-package `in`.bhazi.android.core.network.di
+package `in`.bhazi.core.network.di
 
-import `in`.bhazi.android.core.network.retrofit.ProductApi
+import `in`.bhazi.core.network.retrofit.ProductApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

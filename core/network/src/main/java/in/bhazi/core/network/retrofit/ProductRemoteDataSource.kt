@@ -1,7 +1,7 @@
-package `in`.bhazi.android.core.network.retrofit
+package `in`.bhazi.core.network.retrofit
 
-import `in`.bhazi.android.core.network.model.BhaziApiResponse
-import `in`.bhazi.android.core.network.model.ProductDto
+import `in`.bhazi.core.network.model.BhaziApiResponse
+import `in`.bhazi.core.network.model.ProductDto
 import javax.inject.Inject
 
 class ProductRemoteDataSource @Inject constructor(
