@@ -1,6 +1,6 @@
 package `in`.bhazi.android.core.data.repository
 
-import `in`.bhazi.android.core.model.Quantity
+import `in`.bhazi.core.model.Quantity
 import kotlinx.coroutines.flow.Flow
 
 interface QuantityRepository {

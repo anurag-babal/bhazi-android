@@ -4,7 +4,7 @@ import `in`.bhazi.android.core.data.model.toQuantities
 import `in`.bhazi.android.core.data.model.toQuantity
 import `in`.bhazi.android.core.data.model.toQuantityEntity
 import `in`.bhazi.android.core.database.dao.QuantityDao
-import `in`.bhazi.android.core.model.Quantity
+import `in`.bhazi.core.model.Quantity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

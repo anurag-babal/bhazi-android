@@ -5,7 +5,7 @@ import `in`.bhazi.android.core.domain.GetProductsUseCase
 import `in`.bhazi.android.core.domain.IncrementQuantityUseCase
 import `in`.bhazi.android.core.domain.RefreshProductsUseCase
 import `in`.bhazi.android.core.data.repository.QuantityRepository
-import `in`.bhazi.android.core.model.Product
+import `in`.bhazi.core.model.Product
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue

@@ -1,6 +1,6 @@
 package `in`.bhazi.android.feature.referral
 
-import `in`.bhazi.android.core.model.Referral
+import `in`.bhazi.core.model.Referral
 
 sealed interface ReferralUiState {
     object Loading : ReferralUiState

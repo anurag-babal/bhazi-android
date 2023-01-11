@@ -1,7 +1,7 @@
 package `in`.bhazi.android.feature.home
 
-import `in`.bhazi.android.core.model.Product
-import `in`.bhazi.android.core.model.Quantity
+import `in`.bhazi.core.model.Product
+import `in`.bhazi.core.model.Quantity
 
 data class HomeUiState(
     val products: List<Product> = emptyList(),

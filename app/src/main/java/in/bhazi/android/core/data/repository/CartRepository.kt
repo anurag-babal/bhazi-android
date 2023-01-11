@@ -1,6 +1,6 @@
 package `in`.bhazi.android.core.data.repository
 
-import `in`.bhazi.android.core.model.Cart
+import `in`.bhazi.core.model.Cart
 import kotlinx.coroutines.flow.Flow
 
 interface CartRepository {

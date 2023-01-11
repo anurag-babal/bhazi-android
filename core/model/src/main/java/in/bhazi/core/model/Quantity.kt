@@ -1,4 +1,4 @@
-package `in`.bhazi.android.core.model
+package `in`.bhazi.core.model
 
 data class Quantity(
     val productId: Int,

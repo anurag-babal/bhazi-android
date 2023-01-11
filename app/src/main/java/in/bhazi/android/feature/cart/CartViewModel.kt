@@ -4,8 +4,8 @@ import `in`.bhazi.android.core.domain.DecrementQuantityUseCase
 import `in`.bhazi.android.core.domain.IncrementQuantityUseCase
 import `in`.bhazi.android.core.data.repository.CartRepository
 import `in`.bhazi.android.core.data.repository.QuantityRepository
-import `in`.bhazi.android.core.model.Cart
-import `in`.bhazi.android.core.model.Quantity
+import `in`.bhazi.core.model.Cart
+import `in`.bhazi.core.model.Quantity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel

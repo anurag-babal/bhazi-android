@@ -1,7 +1,7 @@
 package `in`.bhazi.android.core.data.model
 
 import `in`.bhazi.android.core.database.model.CartEntity
-import `in`.bhazi.android.core.model.Cart
+import `in`.bhazi.core.model.Cart
 
 fun CartEntity.toCart(): Cart {
     return Cart(

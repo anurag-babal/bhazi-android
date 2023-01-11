@@ -1,7 +1,7 @@
 package `in`.bhazi.android.core.domain
 
 import `in`.bhazi.android.core.data.repository.QuantityRepository
-import `in`.bhazi.android.core.model.Quantity
+import `in`.bhazi.core.model.Quantity
 import javax.inject.Inject
 
 class IncrementQuantityUseCase @Inject constructor(

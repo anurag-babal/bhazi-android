@@ -1,7 +1,6 @@
 package `in`.bhazi.android.feature.product
 
-import `in`.bhazi.core.design.component.QuantitySelector
-import `in`.bhazi.android.core.model.Product
+import `in`.bhazi.core.model.Product
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column

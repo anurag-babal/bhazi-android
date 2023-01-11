@@ -5,7 +5,7 @@ import `in`.bhazi.android.core.data.model.toProductEntities
 import `in`.bhazi.android.core.data.model.toProductEntity
 import `in`.bhazi.android.core.data.model.toProducts
 import `in`.bhazi.android.core.database.dao.ProductDao
-import `in`.bhazi.android.core.model.Product
+import `in`.bhazi.core.model.Product
 import `in`.bhazi.core.network.retrofit.ProductRemoteDataSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

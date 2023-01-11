@@ -1,6 +1,6 @@
 package `in`.bhazi.android.core.domain
 
-import `in`.bhazi.android.core.model.Quantity
+import `in`.bhazi.core.model.Quantity
 import `in`.bhazi.android.core.data.repository.QuantityRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

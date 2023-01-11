@@ -1,6 +1,6 @@
 package `in`.bhazi.android.feature.product
 
-import `in`.bhazi.android.core.model.Product
+import `in`.bhazi.core.model.Product
 import `in`.bhazi.android.feature.product.navigation.productIdArg
 import `in`.bhazi.android.core.domain.DecrementQuantityUseCase
 import `in`.bhazi.android.core.domain.GetProductFlowUseCase

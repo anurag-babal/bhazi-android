@@ -1,6 +1,6 @@
 package `in`.bhazi.android.feature.home
 
-import `in`.bhazi.android.core.model.Product
+import `in`.bhazi.core.model.Product
 
 sealed class HomeEvent {
     object OnRefresh: HomeEvent()

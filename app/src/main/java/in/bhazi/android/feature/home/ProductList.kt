@@ -1,8 +1,8 @@
 package `in`.bhazi.android.feature.home
 
 import `in`.bhazi.android.R
-import `in`.bhazi.android.core.model.Product
-import `in`.bhazi.android.core.model.Quantity
+import `in`.bhazi.core.model.Product
+import `in`.bhazi.core.model.Quantity
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items

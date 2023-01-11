@@ -1,8 +1,7 @@
 package `in`.bhazi.android.feature.cart
 
-import `in`.bhazi.core.design.component.QuantitySelector
-import `in`.bhazi.android.core.model.Cart
-import `in`.bhazi.android.core.model.Quantity
+import `in`.bhazi.core.model.Cart
+import `in`.bhazi.core.model.Quantity
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.CircularProgressIndicator

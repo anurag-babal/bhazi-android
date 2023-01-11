@@ -3,7 +3,7 @@ package `in`.bhazi.android.core.data.repository
 import `in`.bhazi.android.core.data.model.toCart
 import `in`.bhazi.android.core.data.model.toCartEntity
 import `in`.bhazi.android.core.database.dao.CartDao
-import `in`.bhazi.android.core.model.Cart
+import `in`.bhazi.core.model.Cart
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
