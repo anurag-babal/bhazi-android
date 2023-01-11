@@ -1,8 +1,8 @@
 package `in`.bhazi.android.core.domain
 
-import `in`.bhazi.android.core.common.Resource
-import `in`.bhazi.android.core.model.Product
 import `in`.bhazi.android.core.data.repository.ProductRepository
+import `in`.bhazi.android.core.model.Product
+import `in`.bhazi.core.common.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
