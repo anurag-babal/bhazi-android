@@ -1,7 +1,7 @@
 package `in`.bhazi.android.app.ui
 
 import `in`.bhazi.android.app.navigation.TopLevelDestination
-import `in`.bhazi.android.core.data.util.NetworkMonitor
+import `in`.bhazi.core.data.util.NetworkMonitor
 import `in`.bhazi.android.feature.account.navigateToAccount
 import `in`.bhazi.android.feature.cart.navigateToCart
 import `in`.bhazi.android.feature.home.navigation.navigateToHomeGraph

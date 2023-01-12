@@ -3,21 +3,22 @@ package `in`.bhazi.core.network.model
 
 import com.google.gson.annotations.SerializedName
 import androidx.annotation.Keep
+import java.math.BigDecimal
 
 @Keep
 data class AddressDto(
     @SerializedName("id")
-    val id: Int?,
+    val id: Int,
     @SerializedName("floor")
     val floor: String?,
     @SerializedName("completeAddress")
-    val completeAddress: String?,
+    val completeAddress: String,
     @SerializedName("instruction")
     val instruction: String?,
     @SerializedName("distanceFromShop")
-    val distanceFromShop: Double?,
+    val distanceFromShop: Double,
     @SerializedName("lattitude")
-    val latitude: Double?,
+    val latitude: BigDecimal,
     @SerializedName("longitude")
-    val longitude: Double?
+    val longitude: BigDecimal
 )

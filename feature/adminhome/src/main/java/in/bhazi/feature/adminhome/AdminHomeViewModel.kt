@@ -1,50 +1,45 @@
 package `in`.bhazi.feature.adminhome
 
+import `in`.bhazi.core.domain.RefreshOrdersUseCase
 import `in`.bhazi.core.model.Order
-import `in`.bhazi.core.model.Product
-import `in`.bhazi.core.network.model.OrderDto
-import `in`.bhazi.core.network.model.ProductDto
-import `in`.bhazi.core.network.retrofit.ProductRemoteDataSource
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class AdminHomeViewModel @Inject constructor(
-    private val productRemoteDataSource: ProductRemoteDataSource
+    private val refreshOrderUseCase: RefreshOrdersUseCase
 ) : ViewModel() {
-    private val _orders: MutableStateFlow<List<Order>> = MutableStateFlow(listOf())
-    val orders: StateFlow<List<Order>> = _orders
-    val statuses = listOf("Ordered", "Out For Delivery", "Delivered", "Cancelled")
-    val types = DAY.values().map { it.displayName }
-    var selectedStatus: String = statuses[0]
-    var selectedType: String = types[0]
+    private val _uiState: MutableStateFlow<AdminHomeUiState> =
+        MutableStateFlow(AdminHomeUiState(loading = true))
+    val adminHomeUiState = _uiState
 
     init {
         fetchOrders()
     }
 
-    fun onClickMenuItem(status: String = selectedStatus, type: String = selectedType) {
-        selectedStatus = status
-        selectedType = type
+    fun onClickMenuItem(
+        status: String = _uiState.value.selectedStatus,
+        type: String = _uiState.value.selectedType
+    ) {
+        _uiState.value = _uiState.value.copy(
+            loading = true, selectedStatus = status, selectedType = type
+        )
         fetchOrders()
     }
 
     private fun fetchOrders() {
         viewModelScope.launch {
-            val remoteOrders = productRemoteDataSource
-                .fetchOrdersForAdmin(selectedStatus, DAY.valueOf(selectedType.uppercase()).description)
-            remoteOrders.onSuccess {
-                _orders.value = it.map { orderDto -> orderDto.toOrder() }
-            }
+            val orders = refreshOrderUseCase(
+                day = DAY.valueOf(_uiState.value.selectedType.uppercase()).description,
+                status = _uiState.value.selectedStatus
+            ).data!!
+            _uiState.value = _uiState.value.copy(loading = false, orders = orders)
         }
-    }
-
-    private fun OrderDto.toOrder(): Order {
-        return Order(id = id, status = status, customerName = customerName)
     }
 }
 
@@ -52,3 +47,12 @@ enum class DAY(val displayName: String, val description: String) {
     TODAY("Today", "price"),
     YESTERDAY("Yesterday", "delivery")
 }
+
+data class AdminHomeUiState(
+    val loading: Boolean = false,
+    val orders: List<Order> = listOf(),
+    val statuses: List<String> = listOf("Ordered", "Out For Delivery", "Delivered", "Cancelled"),
+    val selectedStatus: String = "Ordered",
+    val types: List<String> = DAY.values().map { it.displayName },
+    val selectedType: String = "Yesterday"
+)

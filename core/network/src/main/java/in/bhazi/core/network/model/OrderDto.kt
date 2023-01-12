@@ -11,39 +11,37 @@ data class OrderDto(
     @SerializedName("status")
     val status: String,
     @SerializedName("amount")
-    val amount: Double?,
+    val amount: Double,
     @SerializedName("deliveryCharge")
-    val deliveryCharge: Double?,
+    val deliveryCharge: Double,
     @SerializedName("packagingCharge")
-    val packagingCharge: Double?,
+    val packagingCharge: Double,
     @SerializedName("walletBalance")
-    val walletBalance: Double?,
+    val walletBalance: Double,
     @SerializedName("couponBalance")
-    val couponBalance: Double?,
+    val couponBalance: Double,
     @SerializedName("referralWalletBalance")
-    val referralWalletBalance: Double?,
+    val referralWalletBalance: Double,
     @SerializedName("paymentMode")
-    val paymentMode: String?,
+    val paymentMode: String,
     @SerializedName("deliveryType")
-    val deliveryType: String?,
+    val deliveryType: String,
     @SerializedName("packagingType")
-    val packagingType: String?,
+    val packagingType: String,
     @SerializedName("deliveryTimePref")
-    val deliveryTimePref: String?,
+    val deliveryTimePref: String,
     @SerializedName("addressNew")
-    val addressNew: AddressDto?,
+    val address: AddressDto,
     @SerializedName("shopId")
-    val shopId: Int?,
+    val shopId: Int,
     @SerializedName("shopName")
-    val shopName: String?,
+    val shopName: String,
     @SerializedName("customerName")
     val customerName: String,
     @SerializedName("mobileNumber")
-    val mobileNumber: String?,
+    val mobileNumber: String,
     @SerializedName("orderItems")
-    val orderItems: List<OrderItemDto?>?,
-    @SerializedName("address")
-    val address: String?,
+    val orderItems: List<OrderItemDto>,
     @SerializedName("timestamp")
-    val timestamp: String?
+    val timestamp: String
 )

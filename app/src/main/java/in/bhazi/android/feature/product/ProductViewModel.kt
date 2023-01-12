@@ -2,10 +2,10 @@ package `in`.bhazi.android.feature.product
 
 import `in`.bhazi.core.model.Product
 import `in`.bhazi.android.feature.product.navigation.productIdArg
-import `in`.bhazi.android.core.domain.DecrementQuantityUseCase
-import `in`.bhazi.android.core.domain.GetProductFlowUseCase
-import `in`.bhazi.android.core.domain.GetQuantityFlowUseCase
-import `in`.bhazi.android.core.domain.IncrementQuantityUseCase
+import `in`.bhazi.core.domain.DecrementQuantityUseCase
+import `in`.bhazi.core.domain.GetProductFlowUseCase
+import `in`.bhazi.core.domain.GetQuantityFlowUseCase
+import `in`.bhazi.core.domain.IncrementQuantityUseCase
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

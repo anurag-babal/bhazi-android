@@ -27,5 +27,5 @@ interface BhaziApi {
         @Query("type") type: String,
         @Query("page") page: Int,
         @Query("size") size: Int
-    ): BhaziApiResponse<List<OrderDto>>?
+    ): BhaziApiResponse<List<OrderDto>>
 }

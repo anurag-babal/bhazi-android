@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import `in`.bhazi.android.app.ui.BhaziApp
-import `in`.bhazi.android.core.data.util.NetworkMonitor
+import `in`.bhazi.core.data.util.NetworkMonitor
 import `in`.bhazi.core.design.theme.BhaziTheme
 import androidx.activity.viewModels
 import androidx.compose.foundation.isSystemInDarkTheme

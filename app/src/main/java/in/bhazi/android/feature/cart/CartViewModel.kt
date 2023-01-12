@@ -1,9 +1,9 @@
 package `in`.bhazi.android.feature.cart
 
-import `in`.bhazi.android.core.domain.DecrementQuantityUseCase
-import `in`.bhazi.android.core.domain.IncrementQuantityUseCase
-import `in`.bhazi.android.core.data.repository.CartRepository
-import `in`.bhazi.android.core.data.repository.QuantityRepository
+import `in`.bhazi.core.domain.DecrementQuantityUseCase
+import `in`.bhazi.core.domain.IncrementQuantityUseCase
+import `in`.bhazi.core.data.repository.CartRepository
+import `in`.bhazi.core.data.repository.QuantityRepository
 import `in`.bhazi.core.model.Cart
 import `in`.bhazi.core.model.Quantity
 import androidx.lifecycle.ViewModel

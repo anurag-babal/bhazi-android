@@ -44,9 +44,10 @@ kapt {
 }
 
 dependencies {
-    implementation project(path: ':core:network')
     implementation project(path: ':core:model')
     implementation project(path: ':core:design')
+    implementation project(path: ':core:domain')
+    implementation project(path: ':core:common')
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'

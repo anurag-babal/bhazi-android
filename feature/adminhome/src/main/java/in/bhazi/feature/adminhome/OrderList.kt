@@ -35,12 +35,6 @@ fun OrderList(
 @Composable
 fun PreviewOrderList() {
     BhaziTheme {
-        OrderList(orders = orderList)
+
     }
 }
-
-val orderList: List<Order> = listOf(
-    Order(id = 1, status = "ordered", customerName = "ABC"),
-    Order(id = 2, status = "ordered", customerName = "Def"),
-    Order(id = 3, status = "ordered", customerName = "ghi")
-)

@@ -2,7 +2,7 @@ package `in`.bhazi.android.app.ui
 
 import `in`.bhazi.android.app.BhaziNavHost
 import `in`.bhazi.android.R
-import `in`.bhazi.android.core.data.util.NetworkMonitor
+import `in`.bhazi.core.data.util.NetworkMonitor
 import `in`.bhazi.core.design.theme.BhaziTheme
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold

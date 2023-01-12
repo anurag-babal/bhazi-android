@@ -35,8 +35,6 @@ fun AdminOrderItem(
 @Composable
 fun PreviewAdminOrderItem() {
     BhaziTheme {
-        AdminOrderItem(
-            order = Order(id = 110, status = "ordered", customerName = "Abc")
-        )
+
     }
 }

@@ -1,10 +1,10 @@
 package `in`.bhazi.android.feature.home
 
-import `in`.bhazi.android.core.domain.DecrementQuantityUseCase
-import `in`.bhazi.android.core.domain.GetProductsUseCase
-import `in`.bhazi.android.core.domain.IncrementQuantityUseCase
-import `in`.bhazi.android.core.domain.RefreshProductsUseCase
-import `in`.bhazi.android.core.data.repository.QuantityRepository
+import `in`.bhazi.core.domain.DecrementQuantityUseCase
+import `in`.bhazi.core.domain.GetProductsUseCase
+import `in`.bhazi.core.domain.IncrementQuantityUseCase
+import `in`.bhazi.core.domain.RefreshProductsUseCase
+import `in`.bhazi.core.data.repository.QuantityRepository
 import `in`.bhazi.core.model.Product
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
