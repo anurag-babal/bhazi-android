@@ -1,6 +1,6 @@
-package `in`.bhazi.android.core.database.dao
+package `in`.bhazi.core.database.dao
 
-import `in`.bhazi.android.core.database.model.QuantityEntity
+import `in`.bhazi.core.database.model.QuantityEntity
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert

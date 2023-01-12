@@ -1,6 +1,6 @@
 package `in`.bhazi.android.core.data.model
 
-import `in`.bhazi.android.core.database.model.QuantityEntity
+import `in`.bhazi.core.database.model.QuantityEntity
 import `in`.bhazi.core.model.Quantity
 
 fun QuantityEntity.toQuantity(): Quantity {

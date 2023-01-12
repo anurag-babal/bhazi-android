@@ -1,6 +1,6 @@
 package `in`.bhazi.android.core.data.model
 
-import `in`.bhazi.android.core.database.model.ProductEntity
+import `in`.bhazi.core.database.model.ProductEntity
 import `in`.bhazi.core.model.Cart
 import `in`.bhazi.core.model.Product
 import `in`.bhazi.core.network.model.ProductDto

@@ -1,4 +1,4 @@
-package `in`.bhazi.android.core.database.model
+package `in`.bhazi.core.database.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -1,6 +1,6 @@
-package `in`.bhazi.android.core.database.dao
+package `in`.bhazi.core.database.dao
 
-import `in`.bhazi.android.core.database.model.ProductEntity
+import `in`.bhazi.core.database.model.ProductEntity
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 

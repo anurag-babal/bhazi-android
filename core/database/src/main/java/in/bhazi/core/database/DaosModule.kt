@@ -1,8 +1,8 @@
-package `in`.bhazi.android.core.database
+package `in`.bhazi.core.database
 
-import `in`.bhazi.android.core.database.dao.CartDao
-import `in`.bhazi.android.core.database.dao.ProductDao
-import `in`.bhazi.android.core.database.dao.QuantityDao
+import `in`.bhazi.core.database.dao.CartDao
+import `in`.bhazi.core.database.dao.ProductDao
+import `in`.bhazi.core.database.dao.QuantityDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

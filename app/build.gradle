@@ -58,6 +58,7 @@ dependencies {
     implementation project(path: ':core:design')
     implementation project(path: ':core:common')
     implementation project(path: ':core:network')
+    implementation project(path: ':core:database')
     implementation project(path: ':core:model')
 
     implementation 'androidx.core:core-ktx:1.7.0'

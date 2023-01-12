@@ -1,4 +1,4 @@
-package `in`.bhazi.android.core.database
+package `in`.bhazi.core.database
 
 import android.app.Application
 import androidx.room.Room
