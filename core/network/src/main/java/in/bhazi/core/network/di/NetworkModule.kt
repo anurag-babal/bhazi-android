@@ -1,6 +1,6 @@
 package `in`.bhazi.core.network.di
 
-import `in`.bhazi.core.network.retrofit.ProductApi
+import `in`.bhazi.core.network.retrofit.BhaziApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,7 +17,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideProductApi(): ProductApi {
+    fun provideProductApi(): BhaziApi {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(BASE_URL)

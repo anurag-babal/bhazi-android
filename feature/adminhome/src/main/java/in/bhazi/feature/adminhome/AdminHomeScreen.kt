@@ -1,19 +1,10 @@
 package `in`.bhazi.feature.adminhome
 
-import `in`.bhazi.core.model.Product
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
+import `in`.bhazi.core.design.component.DropDownMenu
+import `in`.bhazi.core.model.Order
+import androidx.compose.foundation.layout.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 
@@ -21,25 +12,57 @@ import androidx.hilt.navigation.compose.hiltViewModel
 fun AdminHomeRoute(
     viewModel: AdminHomeViewModel = hiltViewModel()
 ) {
-    val product by viewModel.product.collectAsState()
-    val products by viewModel.products.collectAsState()
-    AdminHomeScreen(product = product, products = products, modifier = Modifier)
+    val statuses = viewModel.statuses
+    val selectedStatus: String = viewModel.selectedStatus
+    val types = viewModel.types
+    val selectedType: String = viewModel.selectedType
+
+    val orders by viewModel.orders.collectAsState()
+
+    AdminHomeScreen(
+        orders = orders,
+        statuses = statuses,
+        selectedStatus = selectedStatus,
+        types = types,
+        selectedType = selectedType,
+        onClickStatusItem = { viewModel.onClickMenuItem(status = it) },
+        onClickTypeItem = { viewModel.onClickMenuItem(type = it) },
+        modifier = Modifier
+    )
 }
 
 @Composable
 fun AdminHomeScreen(
-    product: Product,
+    onClickStatusItem: (String) -> Unit,
+    onClickTypeItem: (String) -> Unit,
     modifier: Modifier = Modifier,
-    products: List<Product> = listOf()
+    statuses: List<String> = listOf(),
+    selectedStatus: String = "",
+    types: List<String> = listOf(),
+    selectedType: String = "",
+    orders: List<Order> = listOf()
 ) {
     Box(modifier = modifier.fillMaxSize()) {
-        Text(text = product.name, modifier = Modifier.fillMaxWidth().heightIn(min = 20.dp))
-        /*LazyColumn(
-            modifier = Modifier
-        ) {
-            items(products) { product ->
-                Text(text = product.name, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
+        Column {
+            Row(modifier = Modifier.fillMaxWidth()) {
+                DropDownMenu(
+                    options = types,
+                    selectedOption = selectedType,
+                    onClickMenuItem = onClickTypeItem,
+                    modifier = Modifier
+                        .fillMaxWidth(0.5f)
+                        .padding(start = 8.dp, end = 4.dp)
+                )
+                DropDownMenu(
+                    options = statuses,
+                    selectedOption = selectedStatus,
+                    onClickMenuItem = onClickStatusItem,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 4.dp, end = 8.dp)
+                )
             }
-        }*/
+            OrderList(orders = orders)
+        }
     }
 }
