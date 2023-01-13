@@ -6,18 +6,22 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun AdminOrderItem(
     order: Order,
+    onClickOrder: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
+        onClick = onClickOrder,
         modifier = modifier
             .fillMaxWidth()
     ) {

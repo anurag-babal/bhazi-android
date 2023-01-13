@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 fun DropDownMenu(
     onClickMenuItem: (String) -> Unit,
     modifier: Modifier = Modifier,
+    label: String = "Menu",
     selectedOption: String = "",
     options: List<String> = listOf()
 ) {
@@ -23,12 +24,13 @@ fun DropDownMenu(
         onExpandedChange = { expanded = !expanded },
         modifier = modifier
     ) {
-        TextField(
+        OutlinedTextField(
+            label = { Text(text = label) },
             readOnly = true,
             value = selectedOption,
             trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
             onValueChange = {  },
-            colors = ExposedDropdownMenuDefaults.textFieldColors()
+//            colors = ExposedDropdownMenuDefaults.textFieldColors()
         )
         ExposedDropdownMenu(
             expanded = expanded,

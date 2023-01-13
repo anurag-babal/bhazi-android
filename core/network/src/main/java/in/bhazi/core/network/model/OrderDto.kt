@@ -7,7 +7,7 @@ import androidx.annotation.Keep
 @Keep
 data class OrderDto(
     @SerializedName("id")
-    val id: Int,
+    val id: Long,
     @SerializedName("status")
     val status: String,
     @SerializedName("amount")
@@ -35,11 +35,11 @@ data class OrderDto(
     @SerializedName("shopId")
     val shopId: Int,
     @SerializedName("shopName")
-    val shopName: String,
+    val shopName: String?,
     @SerializedName("customerName")
     val customerName: String,
     @SerializedName("mobileNumber")
-    val mobileNumber: String,
+    val mobileNumber: String?,
     @SerializedName("orderItems")
     val orderItems: List<OrderItemDto>,
     @SerializedName("timestamp")

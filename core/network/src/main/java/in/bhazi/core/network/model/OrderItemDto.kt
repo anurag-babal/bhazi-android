@@ -7,7 +7,7 @@ import androidx.annotation.Keep
 @Keep
 data class OrderItemDto(
     @SerializedName("id")
-    val id: Int,
+    val id: Long,
     @SerializedName("productName")
     val productName: String,
     @SerializedName("quantity")

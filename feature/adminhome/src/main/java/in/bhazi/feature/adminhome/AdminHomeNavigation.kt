@@ -1,18 +1,27 @@
 package `in`.bhazi.feature.adminhome
 
-import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavOptions
+import androidx.navigation.*
+import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 
-const val navigateAdminHomeRoute = "admin_home_route"
+const val adminHomeGraph = "admin_home_graph"
+private const val adminHomeRoute = "admin_home_route"
 
 fun NavController.navigateToAdminHome(navOptions: NavOptions) {
-    this.navigate(navigateAdminHomeRoute, navOptions)
+    this.navigate(adminHomeGraph, navOptions)
 }
 
-fun NavGraphBuilder.adminHomeScreen() {
-    composable(route = navigateAdminHomeRoute) {
-        AdminHomeRoute()
+fun NavGraphBuilder.adminHomeScreen(
+    navigateToOrder: (Long) -> Unit,
+    nestedGraph: NavGraphBuilder.() -> Unit
+) {
+    navigation(
+        startDestination = adminHomeRoute,
+        route = adminHomeGraph
+    ) {
+        composable(adminHomeRoute) {
+            AdminHomeRoute(onClickOrder = navigateToOrder)
+        }
+        nestedGraph()
     }
 }

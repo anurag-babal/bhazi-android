@@ -53,6 +53,7 @@ dependencies {
     implementation project(path: ':core:design')
     implementation project(path: ':core:common')
     implementation project(path: ':feature:adminhome')
+    implementation project(path: ':feature:order')
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'

@@ -8,7 +8,7 @@ import java.math.BigDecimal
 @Keep
 data class AddressDto(
     @SerializedName("id")
-    val id: Int,
+    val id: Long,
     @SerializedName("floor")
     val floor: String?,
     @SerializedName("completeAddress")
@@ -18,7 +18,7 @@ data class AddressDto(
     @SerializedName("distanceFromShop")
     val distanceFromShop: Double,
     @SerializedName("lattitude")
-    val latitude: BigDecimal,
+    val latitude: BigDecimal?,
     @SerializedName("longitude")
-    val longitude: BigDecimal
+    val longitude: BigDecimal?
 )

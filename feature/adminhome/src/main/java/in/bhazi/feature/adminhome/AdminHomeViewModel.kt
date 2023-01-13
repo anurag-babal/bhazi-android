@@ -1,25 +1,35 @@
 package `in`.bhazi.feature.adminhome
 
+import `in`.bhazi.core.domain.GetOrdersFlowUseCase
 import `in`.bhazi.core.domain.RefreshOrdersUseCase
 import `in`.bhazi.core.model.Order
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class AdminHomeViewModel @Inject constructor(
-    private val refreshOrderUseCase: RefreshOrdersUseCase
+    private val refreshOrderUseCase: RefreshOrdersUseCase,
+    private val getOrdersFlowUseCase: GetOrdersFlowUseCase
 ) : ViewModel() {
     private val _uiState: MutableStateFlow<AdminHomeUiState> =
         MutableStateFlow(AdminHomeUiState(loading = true))
     val adminHomeUiState = _uiState
 
     init {
+        getOrders()
+    }
+
+    private fun getOrders() {
         fetchOrders()
+        viewModelScope.launch {
+            getOrdersFlowUseCase().collect {
+                _uiState.value = _uiState.value.copy(orders = it)
+            }
+        }
     }
 
     fun onClickMenuItem(
@@ -27,18 +37,19 @@ class AdminHomeViewModel @Inject constructor(
         type: String = _uiState.value.selectedType
     ) {
         _uiState.value = _uiState.value.copy(
-            loading = true, selectedStatus = status, selectedType = type
+            selectedStatus = status, selectedType = type
         )
         fetchOrders()
     }
 
     private fun fetchOrders() {
         viewModelScope.launch {
-            val orders = refreshOrderUseCase(
+            _uiState.value = _uiState.value.copy(loading = true)
+            refreshOrderUseCase(
                 day = DAY.valueOf(_uiState.value.selectedType.uppercase()).description,
                 status = _uiState.value.selectedStatus
-            ).data!!
-            _uiState.value = _uiState.value.copy(loading = false, orders = orders)
+            )
+            _uiState.value = _uiState.value.copy(loading = false)
         }
     }
 }

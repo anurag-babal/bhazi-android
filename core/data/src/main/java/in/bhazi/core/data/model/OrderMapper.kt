@@ -48,9 +48,9 @@ fun OrderDto.toOrderEntity(): OrderEntity {
         deliveryTimePref = deliveryTimePref,
         address = address.toAddressEntity(),
         shopId = shopId,
-        shopName = shopName,
+        shopName = shopName ?: "",
         customerName = customerName,
-        mobileNumber = mobileNumber,
+        mobileNumber = mobileNumber ?: "",
         orderItems = orderItems.toOrderItemEntities(),
         timestamp = timestamp
     )

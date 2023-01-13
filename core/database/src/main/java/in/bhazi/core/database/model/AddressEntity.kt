@@ -5,7 +5,7 @@ import java.math.BigDecimal
 
 @Entity
 data class AddressEntity(
-    val id: Int,
+    val id: Long,
     val floor: String?,
     val completeAddress: String,
     val instruction: String?,

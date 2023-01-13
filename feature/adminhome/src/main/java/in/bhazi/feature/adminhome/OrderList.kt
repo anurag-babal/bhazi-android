@@ -16,15 +16,17 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun OrderList(
+    onClickOrder: (Long) -> Unit,
     modifier: Modifier = Modifier,
     orders: List<Order> = listOf()
 ) {
     LazyColumn(
         modifier = modifier.fillMaxSize()
     ) {
-        items(orders) { order ->
+        items(items = orders, key = { it.id }) { order ->
             AdminOrderItem(
                 order = order,
+                onClickOrder = { onClickOrder(order.id) },
                 modifier = Modifier.padding(8.dp)
             )
         }

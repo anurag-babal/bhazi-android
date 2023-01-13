@@ -23,7 +23,7 @@ fun AddressDto.toAddressEntity(): AddressEntity {
         completeAddress = completeAddress,
         instruction = instruction,
         distanceFromShop = distanceFromShop,
-        latitude = latitude,
-        longitude = longitude
+        latitude = latitude ?: 0.0.toBigDecimal(),
+        longitude = longitude ?: 0.0.toBigDecimal()
     )
 }

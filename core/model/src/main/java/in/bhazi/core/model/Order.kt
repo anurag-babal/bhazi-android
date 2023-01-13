@@ -1,7 +1,7 @@
 package `in`.bhazi.core.model
 
 data class Order(
-    val id: Int,
+    val id: Long,
     val status: String,
     val amount: Double,
     val deliveryCharge: Double,

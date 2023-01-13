@@ -3,7 +3,10 @@ package `in`.bhazi.core.network.retrofit
 import `in`.bhazi.core.network.model.BhaziApiResponse
 import `in`.bhazi.core.network.model.OrderDto
 import `in`.bhazi.core.network.model.ProductDto
+import `in`.bhazi.core.network.model.UpdateOrderStatusDto
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -21,6 +24,9 @@ interface BhaziApi {
     suspend fun getProduct(@Path("id") id: Int): BhaziApiResponse<ProductDto>?
 
     // Orders
+    @GET("$orders/{id}")
+    suspend fun getOrderDetail(@Path("id") id: Long): BhaziApiResponse<OrderDto>
+
     @GET("$orders/$productionVersion")
     suspend fun getOrders(
         @Query("status") status: String,
@@ -28,4 +34,10 @@ interface BhaziApi {
         @Query("page") page: Int,
         @Query("size") size: Int
     ): BhaziApiResponse<List<OrderDto>>
+
+    @PUT("$orders/{id}")
+    suspend fun updateOrderStatus(
+        @Path("id") orderId: Long,
+        @Body updateOrderStatus: UpdateOrderStatusDto
+    ): BhaziApiResponse<OrderDto>
 }

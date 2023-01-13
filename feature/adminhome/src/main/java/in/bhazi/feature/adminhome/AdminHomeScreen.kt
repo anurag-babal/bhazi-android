@@ -12,6 +12,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
 fun AdminHomeRoute(
+    onClickOrder: (Long) -> Unit,
     viewModel: AdminHomeViewModel = hiltViewModel()
 ) {
     val adminHomeUiState by viewModel.adminHomeUiState.collectAsState()
@@ -25,6 +26,7 @@ fun AdminHomeRoute(
         selectedType = adminHomeUiState.selectedType,
         onClickStatusItem = { viewModel.onClickMenuItem(status = it) },
         onClickTypeItem = { viewModel.onClickMenuItem(type = it) },
+        onClickOrder = onClickOrder,
         modifier = Modifier
     )
 }
@@ -33,6 +35,7 @@ fun AdminHomeRoute(
 fun AdminHomeScreen(
     onClickStatusItem: (String) -> Unit,
     onClickTypeItem: (String) -> Unit,
+    onClickOrder: (Long) -> Unit,
     modifier: Modifier = Modifier,
     isLoading: Boolean = true,
     statuses: List<String> = listOf(),
@@ -45,6 +48,7 @@ fun AdminHomeScreen(
         Column {
             Row(modifier = Modifier.fillMaxWidth()) {
                 DropDownMenu(
+                    label = "Day",
                     options = types,
                     selectedOption = selectedType,
                     onClickMenuItem = onClickTypeItem,
@@ -53,6 +57,7 @@ fun AdminHomeScreen(
                         .padding(start = 8.dp, end = 4.dp)
                 )
                 DropDownMenu(
+                    label = "Status",
                     options = statuses,
                     selectedOption = selectedStatus,
                     onClickMenuItem = onClickStatusItem,
@@ -61,7 +66,10 @@ fun AdminHomeScreen(
                         .padding(start = 4.dp, end = 8.dp)
                 )
             }
-            OrderList(orders = orders)
+            OrderList(
+                orders = orders,
+                onClickOrder = onClickOrder
+            )
         }
         if (isLoading) {
             CircularProgressIndicator(

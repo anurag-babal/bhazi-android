@@ -4,7 +4,7 @@ import androidx.room.Entity
 
 @Entity
 data class OrderEntity(
-    val id: Int,
+    val id: Long,
     val status: String,
     val amount: Double,
     val deliveryCharge: Double,

@@ -3,7 +3,6 @@ package `in`.bhazi.admin.ui
 import `in`.bhazi.admin.AdminNavHost
 import `in`.bhazi.admin.navigation.TopLevelDestination
 import `in`.bhazi.core.design.theme.BhaziTheme
-import `in`.bhazi.feature.adminhome.navigateAdminHomeRoute
 import `in`.bhazi.feature.adminhome.navigateToAdminHome
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -18,7 +17,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
@@ -52,7 +50,7 @@ fun AdminApp() {
 
 fun navigation(navController: NavController, topLevelDestination: TopLevelDestination) {
     val navOptions = navOptions {
-        popUpTo(navController.graph.startDestinationId)
+        popUpTo(navController.graph.startDestinationId) { inclusive = true }
         launchSingleTop = true
     }
 
@@ -61,7 +59,7 @@ fun navigation(navController: NavController, topLevelDestination: TopLevelDestin
             navController.navigateToAdminHome(navOptions)
         }
         TopLevelDestination.ACCOUNT -> {
-            navController.navigateToScreenB(navOptions)
+            navController.navigateToScreenB(navOptions { launchSingleTop = true })
         }
     }
 }
