@@ -13,6 +13,7 @@ fun NavController.navigateToAdminHome(navOptions: NavOptions) {
 
 fun NavGraphBuilder.adminHomeScreen(
     navigateToOrder: (Long) -> Unit,
+    navigateToAddress: (Long) -> Unit,
     nestedGraph: NavGraphBuilder.() -> Unit
 ) {
     navigation(
@@ -20,7 +21,10 @@ fun NavGraphBuilder.adminHomeScreen(
         route = adminHomeGraph
     ) {
         composable(adminHomeRoute) {
-            AdminHomeRoute(onClickOrder = navigateToOrder)
+            AdminHomeRoute(
+                onClickOrder = navigateToOrder,
+                onClickAddress = navigateToAddress
+            )
         }
         nestedGraph()
     }

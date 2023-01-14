@@ -25,7 +25,7 @@ interface BhaziApi {
 
     // Orders
     @GET("$orders/{id}")
-    suspend fun getOrderDetail(@Path("id") id: Long): BhaziApiResponse<OrderDto>
+    suspend fun getOrderDetail(@Path("id") id: Long): BhaziApiResponse<OrderDto>?
 
     @GET("$orders/$productionVersion")
     suspend fun getOrders(
@@ -33,11 +33,11 @@ interface BhaziApi {
         @Query("type") type: String,
         @Query("page") page: Int,
         @Query("size") size: Int
-    ): BhaziApiResponse<List<OrderDto>>
+    ): BhaziApiResponse<List<OrderDto>>?
 
     @PUT("$orders/{id}")
     suspend fun updateOrderStatus(
         @Path("id") orderId: Long,
         @Body updateOrderStatus: UpdateOrderStatusDto
-    ): BhaziApiResponse<OrderDto>
+    ): BhaziApiResponse<OrderDto>?
 }

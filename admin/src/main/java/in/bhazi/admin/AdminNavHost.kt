@@ -3,6 +3,8 @@ package `in`.bhazi.admin
 import `in`.bhazi.admin.ui.screenB
 import `in`.bhazi.feature.adminhome.adminHomeScreen
 import `in`.bhazi.feature.adminhome.adminHomeGraph
+import `in`.bhazi.feature.adminhome.mapScreen
+import `in`.bhazi.feature.adminhome.navigateToMap
 import `in`.bhazi.feature.order.navigateToOrder
 import `in`.bhazi.feature.order.orderScreen
 import androidx.compose.runtime.Composable
@@ -25,7 +27,13 @@ fun AdminNavHost(
             navigateToOrder = { orderId ->
                 navController.navigateToOrder(orderId)
             },
-            nestedGraph = { orderScreen() }
+            navigateToAddress = { orderId ->
+                navController.navigateToMap(orderId)
+            },
+            nestedGraph = {
+                orderScreen()
+                mapScreen()
+            }
         )
         screenB()
     }

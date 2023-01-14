@@ -1,13 +1,12 @@
 package `in`.bhazi.feature.order
 
 import `in`.bhazi.core.domain.GetOrderDetailUseCase
-import `in`.bhazi.core.domain.UpdateOrderStatusToDeliveredUseCase
+import `in`.bhazi.core.domain.UpdateOrderStatusUseCase
 import `in`.bhazi.core.model.Order
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -16,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class OrderViewModel @Inject constructor(
     private val getOrderDetailUseCase: GetOrderDetailUseCase,
-    private val updateOrderStatusToDeliveredUseCase: UpdateOrderStatusToDeliveredUseCase,
+    private val updateOrderStatusUseCase: UpdateOrderStatusUseCase,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     private val orderId: Long = checkNotNull(savedStateHandle.get<Long>(orderIdArg))
@@ -35,10 +34,10 @@ class OrderViewModel @Inject constructor(
         }
     }
 
-    fun onClickDelivered() {
+    fun onClickStatus(status: String) {
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(loading = true)
-            val order = updateOrderStatusToDeliveredUseCase(orderId = orderId)
+            val order = updateOrderStatusUseCase(orderId = orderId, status = status)
             _uiState.value = _uiState.value.copy(order = order, loading = false)
         }
     }

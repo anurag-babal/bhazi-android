@@ -2,12 +2,8 @@ package `in`.bhazi.feature.adminhome
 
 import `in`.bhazi.core.design.theme.BhaziTheme
 import `in`.bhazi.core.model.Order
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Card
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -18,6 +14,7 @@ import androidx.compose.ui.unit.dp
 fun AdminOrderItem(
     order: Order,
     onClickOrder: () -> Unit,
+    onClickAddress: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -31,6 +28,18 @@ fun AdminOrderItem(
             Text(text = "${order.id}")
             Text(text = order.status)
             Text(text = order.customerName)
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    text = order.address.completeAddress,
+                    modifier = Modifier.fillMaxWidth(0.80f)
+                )
+                Button(onClick = onClickAddress) {
+                    Text(text = "Map")
+                }
+            }
         }
     }
 }

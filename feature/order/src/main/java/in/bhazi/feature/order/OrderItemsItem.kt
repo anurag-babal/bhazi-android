@@ -26,8 +26,7 @@ fun OrderItemsItem(
     Card(
         backgroundColor = Color.Blue,
         contentColor = Color.White,
-        modifier = modifier
-            .fillMaxWidth()
+        modifier = modifier.fillMaxWidth()
     ) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,

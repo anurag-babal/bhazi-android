@@ -17,4 +17,7 @@ plugins {
     id 'org.jetbrains.kotlin.android' version '1.6.10' apply false
     id 'org.jetbrains.kotlin.jvm' version '1.6.10' apply false
     id 'com.google.dagger.hilt.android' version '2.44' apply false
+
+    // Gradle secret for storing google maps api key
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin' version '2.0.1' apply false
 }

@@ -3,6 +3,7 @@ package `in`.bhazi.core.data.repository
 import `in`.bhazi.core.data.model.toOrder
 import `in`.bhazi.core.data.model.toOrderEntity
 import `in`.bhazi.core.model.Order
+import `in`.bhazi.core.network.model.OrderDto
 import `in`.bhazi.core.network.retrofit.OrdersNetworkDataSource
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -19,7 +20,9 @@ class OrderRepositoryImpl @Inject constructor(
     override suspend fun refreshOrders(day: String, status: String, page: Int, size: Int) {
         val remoteOrders = ordersNetworkDataSource
             .fetchOrdersForAdmin(status, day, page, size)
-        _orders.value = remoteOrders.map { it.toOrderEntity().toOrder() }
+        remoteOrders?.let {
+            _orders.value = it.map { orderDto -> orderDto.toOrderEntity().toOrder() }
+        }
     }
 
     override fun getOrdersFlow(): Flow<List<Order>> {
@@ -31,8 +34,11 @@ class OrderRepositoryImpl @Inject constructor(
     }
 
     override suspend fun updateOrderStatus(orderId: Long, status: String): Order {
-        val orderDto = ordersNetworkDataSource.updateOrderStatus(orderId, status)
-        _orders.value = _orders.value.filterNot { order -> order.id == orderId }
-        return orderDto.toOrderEntity().toOrder()
+        val orderDto: OrderDto? = ordersNetworkDataSource.updateOrderStatus(orderId, status)
+        orderDto?.let {
+            _orders.value = _orders.value.filterNot { order -> order.id == orderId }
+            return it.toOrderEntity().toOrder()
+        }
+        return _orders.value.find { order -> order.id == orderId }!!
     }
 }

@@ -13,6 +13,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 @Composable
 fun AdminHomeRoute(
     onClickOrder: (Long) -> Unit,
+    onClickAddress: (Long) -> Unit,
     viewModel: AdminHomeViewModel = hiltViewModel()
 ) {
     val adminHomeUiState by viewModel.adminHomeUiState.collectAsState()
@@ -27,6 +28,7 @@ fun AdminHomeRoute(
         onClickStatusItem = { viewModel.onClickMenuItem(status = it) },
         onClickTypeItem = { viewModel.onClickMenuItem(type = it) },
         onClickOrder = onClickOrder,
+        onClickAddress = onClickAddress,
         modifier = Modifier
     )
 }
@@ -36,6 +38,7 @@ fun AdminHomeScreen(
     onClickStatusItem: (String) -> Unit,
     onClickTypeItem: (String) -> Unit,
     onClickOrder: (Long) -> Unit,
+    onClickAddress: (Long) -> Unit,
     modifier: Modifier = Modifier,
     isLoading: Boolean = true,
     statuses: List<String> = listOf(),
@@ -68,7 +71,8 @@ fun AdminHomeScreen(
             }
             OrderList(
                 orders = orders,
-                onClickOrder = onClickOrder
+                onClickOrder = onClickOrder,
+                onClickAddress = onClickAddress
             )
         }
         if (isLoading) {

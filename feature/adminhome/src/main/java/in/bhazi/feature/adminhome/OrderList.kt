@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun OrderList(
     onClickOrder: (Long) -> Unit,
+    onClickAddress: (Long) -> Unit,
     modifier: Modifier = Modifier,
     orders: List<Order> = listOf()
 ) {
@@ -27,6 +28,7 @@ fun OrderList(
             AdminOrderItem(
                 order = order,
                 onClickOrder = { onClickOrder(order.id) },
+                onClickAddress = { onClickAddress(order.id) },
                 modifier = Modifier.padding(8.dp)
             )
         }

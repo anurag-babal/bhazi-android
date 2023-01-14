@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Button
+import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -31,18 +32,16 @@ fun OrderRoute(
     OrderScreen(
         isLoading = orderUiState.loading,
         order = orderUiState.order,
-        enabled = orderUiState.order?.status == "Ordered",
-        onClickDelivered = { viewModel.onClickDelivered() }
+        onClickStatusBtn = { viewModel.onClickStatus(it) }
     )
 }
 
 @Composable
 fun OrderScreen(
-    onClickDelivered: () -> Unit,
     modifier: Modifier = Modifier,
     order: Order? = null,
     isLoading: Boolean = false,
-    enabled: Boolean = false
+    onClickStatusBtn: (String) -> Unit = {}
 ) {
     BoxWithConstraints(
         modifier = modifier
@@ -66,80 +65,151 @@ fun OrderScreen(
                 constraintSet = constraints,
                 modifier = Modifier.fillMaxSize()
             ) {
-                Text(text = order.customerName, modifier = Modifier
-                    .fillMaxWidth()
-                    .layoutId("name"))
-                Text(
-                    text = order.mobileNumber,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .layoutId("mobile")
+                OrderDetailHeader(
+                    customerName = order.customerName,
+                    mobileNumber = order.mobileNumber,
+                    modifier = Modifier.layoutId("header")
                 )
-                LazyColumn(
-                    contentPadding = PaddingValues(vertical = 16.dp),
-                    modifier = Modifier.layoutId("items")
-                ) {
-                    items(items = order.orderItems, key = { it.id }) { item: OrderItem ->
-                        val quantity: Double
-                        val weightSuffix: String
-
-                        if (item.quantity < 1000) {
-                            quantity = item.quantity.toDouble()
-                            weightSuffix = "Gm"
-                        } else {
-                            quantity = (item.quantity / 1000.0)
-                            weightSuffix = "Kg"
-                        }
-
-                        OrderItemsItem(
-                            productName = item.productName,
-                            quantity = quantity,
-                            weightSuffix = weightSuffix,
-                            price = item.price,
-                            modifier = Modifier.padding(top = 8.dp, bottom = 8.dp)
-                        )
-                    }
-                }
-                Text(
-                    text = order.paymentMode,
-                    modifier = Modifier
-                        .layoutId("payment")
+                OrderDetailBody(
+                    orderItems = order.orderItems,
+                    modifier = Modifier.layoutId("body")
                 )
-                Text(
-                    text = order.deliveryTimePref,
-                    modifier = Modifier
-                        .layoutId("deliveryTime")
+                OrderDetailFooter(
+                    paymentMode = order.paymentMode,
+                    deliveryTimePref = order.deliveryTimePref,
+                    modifier = Modifier.layoutId("footer"),
+                    status = order.status,
+                    onClickStatusBtn = onClickStatusBtn
                 )
-                Button(
-                    onClick = onClickDelivered,
-                    enabled = enabled,
-                    modifier = Modifier.fillMaxWidth().layoutId("button")
-                ) {
-                    Text(text = "Delivered", textAlign = TextAlign.Center)
-                }
             }
         }
     }
 }
 
+@Composable
+fun OrderDetailHeader(
+    modifier: Modifier = Modifier,
+    customerName: String = "John Doe",
+    mobileNumber: String = "9876543210"
+) {
+    Card(modifier = modifier.fillMaxWidth()) {
+        MyColumn(modifier = Modifier.fillMaxWidth()) {
+            Text(text = customerName)
+            Text(text = mobileNumber)
+        }
+    }
+}
+
+@Composable
+fun OrderDetailBody(
+    modifier: Modifier = Modifier,
+    orderItems: List<OrderItem> = listOf()
+) {
+    LazyColumn(
+        contentPadding = PaddingValues(vertical = 16.dp),
+        modifier = modifier
+    ) {
+        items(items = orderItems, key = { it.id }) { item: OrderItem ->
+            val quantity: Double
+            val weightSuffix: String
+
+            if (item.quantity < 1000) {
+                quantity = item.quantity.toDouble()
+                weightSuffix = "Gm"
+            } else {
+                quantity = (item.quantity / 1000.0)
+                weightSuffix = "Kg"
+            }
+
+            OrderItemsItem(
+                productName = item.productName,
+                quantity = quantity,
+                weightSuffix = weightSuffix,
+                price = item.price,
+                modifier = Modifier.padding(top = 8.dp, bottom = 8.dp)
+            )
+        }
+    }
+}
+
+@Composable
+fun MyColumn(
+    modifier: Modifier = Modifier,
+    content: @Composable ColumnScope.() -> Unit
+) {
+    Column(
+        modifier = modifier.padding(8.dp),
+        content = content
+    )
+}
+
+@Composable
+fun OrderDetailFooter(
+    modifier: Modifier = Modifier,
+    paymentMode: String = "",
+    deliveryTimePref: String = "",
+    status: String = "",
+    onClickStatusBtn: (String) -> Unit = {}
+) {
+    Card(modifier = modifier.fillMaxWidth()) {
+        MyColumn(modifier = Modifier.fillMaxWidth()) {
+            Text(text = paymentMode)
+            Text(text = deliveryTimePref)
+            OrderStatusUpdateBtn(
+                label = getNewStatus(status),
+                enabled = status == "Ordered" || status == "Out for delivery",
+                onClickStatusBtn = onClickStatusBtn
+            )
+        }
+    }
+}
+
+@Composable
+fun OrderStatusUpdateBtn(
+    modifier: Modifier = Modifier,
+    label: String = "Button",
+    enabled: Boolean = false,
+    onClickStatusBtn: (String) -> Unit = {}
+) {
+    Button(
+        onClick = { onClickStatusBtn(label) },
+        enabled = enabled,
+        modifier = modifier.fillMaxWidth()
+    ) {
+        Text(text = label, textAlign = TextAlign.Center)
+    }
+}
+
 private fun decoupledConstraints(margin: Dp): ConstraintSet {
     return ConstraintSet {
-        val button = createRefFor("button")
-        val name = createRefFor("name")
-        val mobileNumber = createRefFor("mobile")
-        val items = createRefFor("items")
-        val paymentMode = createRefFor("payment")
-        val deliveryTime = createRefFor("deliveryTime")
+        val header = createRefFor("header")
+        val body = createRefFor("body")
+        val footer = createRefFor("footer")
 
-        constrain(name) { top.linkTo(parent.top, margin) }
-        constrain(mobileNumber) { top.linkTo(name.bottom, margin = margin) }
-        constrain(items) {
-            top.linkTo(mobileNumber.bottom, margin = margin)
-            bottom.linkTo(paymentMode.top, margin = margin)
+        constrain(header) { top.linkTo(parent.top, margin) }
+        constrain(body) {
+            top.linkTo(header.bottom, margin = margin)
+            bottom.linkTo(footer.top, margin = margin)
             height = Dimension.fillToConstraints
         }
-        constrain(paymentMode) { bottom.linkTo(deliveryTime.top, margin = margin) }
-        constrain(deliveryTime) { bottom.linkTo(button.top, margin = margin) }
-        constrain(button) { bottom.linkTo(parent.bottom, margin = margin) }
+        constrain(footer) { bottom.linkTo(parent.bottom, margin = margin) }
     }
+}
+
+fun getNewStatus(status: String): String {
+    return when (status) {
+        "Ordered" -> "Out for delivery"
+        "Out for delivery" -> "Delivered"
+        else -> status
+    }
+}
+
+enum class OrderStatus(
+    val displayName: String,
+    val description: String
+) {
+    ORDERED("Ordered", "Ordered"),
+    OUT_FOR_DELIVERY("Out For Delivery", "Out for delivery"),
+    DELIVERED("Delivered", "Delivered"),
+    CANCELLED("Cancelled", "Cancelled")
 }
